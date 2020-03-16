@@ -12,8 +12,7 @@ docker run -d \
     -p 5656:5656 \
     -e VIRTUAL_HOST=<your host> \
     -e VIRTUAL_PORT=<your port> \
-    --name pufferpanel \ 
-    --restart always jorisvos037/pufferpanel
+    --name pufferpanel jorisvos037/pufferpanel
 ```
 
 # Explanation
@@ -31,6 +30,9 @@ If you want a bit more explenation, here it is
 * 5657  - this is the port number that is used by pufferpanel to connect to the SFTP server (for transferring files to and from the server)
 * 5656  - this is the port number that is used by the pufferpanel daemon
 * 8080  - this can be changed! - this is the port number used by the webserver to access the web interface
+
+## Extra
+If you want the container to automatically restart after the docker daemon has restarted or after something went horribly wrong and the pufferpanel container crashed add ```--restart always``` after ```--name <container name>```
 
 ## Admin user
 The admin user by default has the following login:
