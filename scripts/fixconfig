@@ -1,0 +1,3 @@
+#!/bin/bash
+sed -i "s|\"authServer\": \"http://$VIRTUAL_HOST/oauth2/token/request\",|\"authServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/request\",|g" /etc/pufferd/config.json
+sed -i "s|\"infoServer\": \"http://$VIRTUAL_HOST/oauth2/token/info\",|\"infoServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/info\",|g" /etc/pufferd/config.json

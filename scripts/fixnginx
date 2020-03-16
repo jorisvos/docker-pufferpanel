@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -i "s|listen 80;|listen $VIRTUAL_PORT;|g" /etc/nginx/sites-enabled/pufferpanel.conf

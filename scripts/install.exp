@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+
+set timeout -1
+
+spawn /srv/pufferpanel/pufferpanel install
+
+expect "Enter the MySQL host " { send "localhost\n" }
+expect "Enter the MySQL port " { send "3306\n" }
+expect "Enter the MySQL username " { send "root\n" }
+expect "Enter the MySQL account password: " { send "\n" }
+
+expect "(do NOT include http(s)://):" { send "$env(VIRTUAL_HOST)\n" }
+
+expect "Username: " { send "$env(ADMIN_NAME)\n" }
+expect "Email: " { send "$env(ADMIN_EMAIL)\n" }
+expect "Password: " { send "$env(ADMIN_PW)\n" }
+expect "Password: " { send "$env(ADMIN_PW)\n" }
+
+expect "Would you like to thank us? Each thanks gives us the motivation to provide this software to you."  { send "Y" }

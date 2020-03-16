@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Start the untits
+service ssh start
+service nginx start
+service mysql start
+service php7.2-fpm start
+
+if [ ! -f /firstrun.txt ]
+then
+    touch /firstrun.txt
+    echo "Install PufferPanel"
+    cd /srv/pufferpanel
+    expect /srv/install
+    /srv/fixconfig
+    /srv/fixnginx
+    service nginx restart
+    echo "DONE"
+fi
+
+# Start pufferd and pass the stdio to the container stdio
+#cd /srv/pufferd/
+pufferd --config /etc/pufferd/config.json -run
