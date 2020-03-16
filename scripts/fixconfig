@@ -1,3 +1,8 @@
 #!/bin/bash
-sed -i "s|\"authServer\": \"http://$VIRTUAL_HOST/oauth2/token/request\",|\"authServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/request\",|g" /etc/pufferd/config.json
-sed -i "s|\"infoServer\": \"http://$VIRTUAL_HOST/oauth2/token/info\",|\"infoServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/info\",|g" /etc/pufferd/config.json
+if [ "$USE_LETSENCRYPT" == "true" -o "$USE_LETSENCRYPT" == "TRUE"]; then
+    sed -i "s|\"authServer\": \"http://$VIRTUAL_HOST/oauth2/token/request\",|\"authServer\": \"https://$VIRTUAL_HOST:$VIRTUAL_SSL_PORT/oauth2/token/request\",|g" /etc/pufferd/config.json
+    sed -i "s|\"infoServer\": \"http://$VIRTUAL_HOST/oauth2/token/info\",|\"infoServer\": \"https://$VIRTUAL_HOST:$VIRTUAL_SSL_PORT/oauth2/token/info\",|g" /etc/pufferd/config.json
+else
+    sed -i "s|\"authServer\": \"http://$VIRTUAL_HOST/oauth2/token/request\",|\"authServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/request\",|g" /etc/pufferd/config.json
+    sed -i "s|\"infoServer\": \"http://$VIRTUAL_HOST/oauth2/token/info\",|\"infoServer\": \"http://$VIRTUAL_HOST:$VIRTUAL_PORT/oauth2/token/info\",|g" /etc/pufferd/config.json
+fi

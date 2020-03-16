@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# https://www.pufferpanel.com/docs/nginx-configuration
+# https://www.pufferpanel.com/docs/using-letsencrypt-with-pufferpanel
+# do something to the /etc/nginx/sites-enabled/pufferpanel.conf file (look at url above)
+
+# Reload nginx
+service nginx reload
+
+# Download letsencrypt
+cd /srv
+git clone clone https://github.com/letsencrypt/letsencrypt && cd letsencrypt
+
+# Generate certificate
+./letsencrypt-auto certonly --webroot -w /srv/pufferpanel/ -d $VIRTUAL_HOST
+
+# Update pufferd config.json
+# This is already done in start!
+#/srv/fixconfig
+
+# Enable HTTPS on pufferd
+cp /etc/letsencrypt/live/$VIRTUAL_HOST/fullchain.pem /etc/pufferd/https.pem
+cp /etc/letsencrypt/live/$VIRTUAL_HOST/privkey.pem /etc/pufferd/https.key
+
+chown pufferd:pufferd /etc/pufferd/https.pem
+chown pufferd:pufferd /etc/pufferd/https.key
