@@ -1,4 +1,4 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/jorisvos037/docker-pufferpanel.svg)](https://hub.docker.com/r/jorisvos037/pufferpanel/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jorisvos037/pufferpanel.svg)](https://hub.docker.com/r/jorisvos037/pufferpanel/)
 
 This docker image provides a [PufferPanel](http://www.pufferpanel.com/) container.
 
