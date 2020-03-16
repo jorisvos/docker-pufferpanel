@@ -12,7 +12,8 @@ docker run -d \
     -p 5656:5656 \
     -e VIRTUAL_HOST=<your host> \
     -e VIRTUAL_PORT=<your port> \
-    --name pufferpanel jorisvos037/pufferpanel
+    --name pufferpanel \ 
+    --restart always jorisvos037/pufferpanel
 ```
 
 # Explanation
